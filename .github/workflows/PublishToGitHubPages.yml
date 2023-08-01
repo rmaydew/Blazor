@@ -21,12 +21,13 @@ jobs:
       # Publish the site
       - name: Publish
         #      Don't missing to add "p:GHPages=true". 👇
-        run: dotnet publish ProjectDir/Project.csproj -p:GHPages=true -o:public -c:Release
+        run: dotnet publish BlazorPWAGitHubPagesTest/BlazorPWAGitHubPagesTest.csproj -p:GHPages=true -o:public -c:Release
 
       # Deploy the site
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: rmaydew/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: public/wwwroot
-          force_orphan: true
+          BRANCH: gh-pages
+          FOLDER: release/wwwroot
+ 
